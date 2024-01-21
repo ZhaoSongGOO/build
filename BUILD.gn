@@ -11,6 +11,16 @@ config("compiler_defaults") {
   if (is_debug) {
     cflags = [ "-g" ]
   }
+  if (enable_coverage) {
+    cflags += [
+      "-fprofile-instr-generate",
+      "-fcoverage-mapping",
+    ]
+    ldflags = [
+      "-fprofile-instr-generate",
+      "-fcoverage-mapping",
+    ]
+  }
 }
 config("executable_ldconfig") {
   if (!is_mac) {
