@@ -1,6 +1,8 @@
 # Copyright 2014 The Chromium Authors. All rights reserved.
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
+import("//args.gni")
+
 if (target_os == "") {
   target_os = host_os
 }
@@ -44,5 +46,8 @@ declare_args() {
 
 set_default_toolchain("//build/toolchains:clang")
 
-include_dirs = [ "//" ]
+include_dirs = ["//"]
+include_dirs += self_include_dirs
 cflags_cc = [ "-std=c++17" ]
+cflags_cc += self_cflags_cc
+
